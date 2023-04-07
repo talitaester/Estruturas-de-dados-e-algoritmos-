@@ -62,14 +62,13 @@ class Lista1_EDA:
         pre_1 = 1
         pre_2 = 0
         result_list = [0, 1]
-        while result <= number:
+        for i in range(number-1):
             result = pre_1 + pre_2
-            if result <= number:
-                result_list.append(result)
+            result_list.append(result)
             pre_2 = pre_1
             pre_1 = result
-            
-        return result_list
+
+        return result_list[number]
     
 
     def multiplos(self, number):
@@ -109,8 +108,8 @@ class Lista1_EDA:
     
     def somacoluna(self, matrix):
         collumm_sum = 0
-        for i in matrix:
-            collumm_sum += i[0]
+        for i in matrix[0]:
+            collumm_sum += i
         return collumm_sum
     
     def somadiagonal(self, matriz):
@@ -120,12 +119,18 @@ class Lista1_EDA:
         return diagonal_sum
     
     def pertence(self, list1, list2):
-        intersection = []
+        #listas precisam estar set(list) SEM ELEMENTOS REPETIDOS EM NENHUMA DELAS
+        intersection = 0
         for i in list1:
             if i in list2:
-                intersection.append(i)
+                intersection += i
         return intersection
 
+    def produtointerno(self, list1, list2):
+        sum = 0
+        for i in range(len(list1)):
+            sum += list1[i] * list2[i]
+        return sum
             
 
 
