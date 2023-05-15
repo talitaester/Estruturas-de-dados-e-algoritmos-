@@ -21,18 +21,38 @@ class listES:
 
     def insertX(self, position, value):
        obj = value
-       iter = self.size - position
        if self.size < self.max:
-          for i in range(self.size, position -1, 1):
+          for i in range(self.size, position-1, -1):
+            if self.objList[i+1] is not None:
+              self.objList[i+1] = self.objList[i] 
+          self.objList[position] = obj
+          self.size += 1
+
+    def delList(self):
+       i = 0
+       while i < self.size:
+          self.objList[i] = None
+          i += 1
+          self.size -= 1
+
+    def delElementAt(self, position):
+       self.objList[position] = None
+       i = 0
+       while (position <= i) and (i <= self.size):
+          if self.objList[i+1] is not None:
             self.objList[i] = self.objList[i+1]
-          self.objList[position +1] = obj
+          i += 1
+          self.size -= 1
+
 
              
 
 
 
     def showList(self):
+      print("***LISTA***")
       for i in self.objList:
+
         print(i)
     
      
@@ -54,7 +74,10 @@ def main():
   testList.insert(4)
   testList.insert(5)
   testList.insert(6)
-  testList.insertX(3, 9)
+  testList.delElementAt(2)
+  testList.insertX(1, 9)
+  testList.showList()
+  testList.delList()
   testList.showList()
 
 
