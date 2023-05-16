@@ -60,6 +60,9 @@ class ListEnc:
                 print("im here")
                 past.prox = node
                 node.prox = temp
+    def delList(self):
+        self.head = None
+        
 
 
 def main():

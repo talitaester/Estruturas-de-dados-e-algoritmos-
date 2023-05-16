@@ -1,5 +1,4 @@
 
-
 class listES:
     def __init__(self, max):
         self.head = None
@@ -23,7 +22,6 @@ class listES:
        obj = value
        if self.size < self.max:
           for i in range(self.size, position-1, -1):
-            if self.objList[i+1] is not None:
               self.objList[i+1] = self.objList[i] 
           self.objList[position] = obj
           self.size += 1
@@ -74,10 +72,9 @@ def main():
   testList.insert(4)
   testList.insert(5)
   testList.insert(6)
-  testList.delElementAt(2)
   testList.insertX(1, 9)
-  testList.showList()
-  testList.delList()
+  testList.delElementAt(4)
+  #testList.delList()
   testList.showList()
 
 
