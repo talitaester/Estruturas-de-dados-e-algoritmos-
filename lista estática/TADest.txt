@@ -1,0 +1,12 @@
+** Listas estáticas **
+- Tipo abstrado de dados que armazena elementos que podem ser objetos de outras classes ou apenas tipos nativos de dados.
+- Possuem tamanho máximo definido e espaço previamente alocado na mémoria.
+- Implementado com vetores nativos da lang.
+- Não possuem ponteiros prox.
+- Podem receber elementos no inicio, final ou em alguma posição específica do vetor.
+- Quando a lista estática atinge seu tamanho máximo não é mais possivel adicionar elementos sem remover algum antes.
+- Uma lista estática cheia ou vazia ocupa o mesmo espaço na mémoria do computador, uma vez que a mesma é alocada na memória no momento que foi inicializada.
+- Custo de insersão, em uma posição que não seja a última, e remoção costuma ser maior, pois, no pior caso, é preciso deslocar todos os elementos depois do que foi removido.
+- Apresenta características comoself.head, self.size, self.max, e self.list. Esse último é o vetor que será a lista de fato, podendo ser implementado da maneira que for conveniente.
+
+

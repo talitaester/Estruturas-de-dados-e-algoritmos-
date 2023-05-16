@@ -1,0 +1,13 @@
+ *** Lists encadeadas ***
+
+- Não possuem tamanho fixo pré-definido.
+- Não são implementadas com vetores nativos da lang, mas como uma serie de elementos que se ligam uns aos outros com ponteiros.
+- Os elementos que compõem as listas encadeadas devem, obrigatoriamente, apresentar um ponteiro que ira mostrar o proximo elemento na lista. 
+  O primeiro elemento não recebe nenhum ponteiro prox e o último elemento tem o prox definido como None.
+- O custo de insersão e remoção de elementos costuma ser menor que o da lista estática, pois basta trocar as informações dos ponteiros prox para inserir um elementos em certo ponto da lista.
+- Dentre as característicasque uma lista encadeada costuma possuir, o ponteiro Self.head acaba sendo opcional, podendo implementar a lista com o sem esse ponteiro.
+- Por conveniência, costuma-se apresentar um self.size para recuperar informações de tamanho da lista e aplicar certo métodos.
+- Há outros tipos mais especificos de listas encadeadas como listas duplamente encadeadas, listas circulares e listas circulares duplemente encadeadas.
+    - Em listas circulares, o ponteiro prox do último elemento aponta para o primeiro elemento da lista (self.head)
+    - Em listas duplamente encadeadas os elementos apresentam um ponteiro que indica o elemento imediatamente anterior
+    - Essas mudançs são necessárias muitas vezes a fim de facilitar a implementação de métodos.
