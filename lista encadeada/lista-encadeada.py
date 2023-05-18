@@ -59,17 +59,17 @@ class ListEnc:
                 node.prox = temp
     def delList(self):
         self.head = None
-        
-    def cicleDetector(self):
-        temp = self.head
-        print('im hereee')
-        for i in range(self.size -1):
-            temp = temp.prox
-        if temp.prox == None:
-            print("no cicle")
-        else:
-            print("cicle detected")
-
+    #    
+    #def cicleDetector(self):
+    #    temp = self.head
+    #    print('im hereee')
+    #    for i in range(self.size -1):
+    #        temp = temp.prox
+    #    if temp.prox == None:
+    #        print("no cicle")
+    #    else:
+    #        print("cicle detected")
+#
     def createcicle(self, pointerPos):
         temp = self.head
         i = 0
@@ -81,8 +81,19 @@ class ListEnc:
             else:
                 temp.prox = temp2
                 break
-            i += 1
-            
+    #        i += 1
+    #        
+
+    def cicleDetector(self):
+        temp = self.head
+        temp2 = self.head
+        while temp2.prox.prox is not None:
+            temp = temp.prox
+            temp2 = temp2.prox.prox
+            if temp == temp2:
+                print("Ciclo detectado")
+                break
+
 
 
 
@@ -94,7 +105,7 @@ def main():
     #testList.endInsert(8)
     testList.insert(4)
     testList.insert(5)
-    #testList.createcicle(2)
+    testList.createcicle(2)
     testList.cicleDetector()
 
     #testList.insertInPosition(7, 2)
