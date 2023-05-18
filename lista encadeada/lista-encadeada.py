@@ -1,4 +1,3 @@
-import numpy as np
 
 class Element:
     def __init__(self, value):
@@ -20,9 +19,7 @@ class ListEnc:
             while temp is not None:
                 print(temp.showNode())
                 temp = temp.prox
-
-
-    
+ 
     def insert(self, no):
         node = Element(no)
         if self.head is None:
@@ -63,6 +60,30 @@ class ListEnc:
     def delList(self):
         self.head = None
         
+    def cicleDetector(self):
+        temp = self.head
+        print('im hereee')
+        for i in range(self.size -1):
+            temp = temp.prox
+        if temp.prox == None:
+            print("no cicle")
+        else:
+            print("cicle detected")
+
+    def createcicle(self, pointerPos):
+        temp = self.head
+        i = 0
+        while True:
+            if i == pointerPos:
+                temp2 = temp  
+            if temp.prox is not None:
+                temp = temp.prox
+            else:
+                temp.prox = temp2
+                break
+            i += 1
+            
+
 
 
 def main():
@@ -70,11 +91,15 @@ def main():
     testList.insert(1)
     testList.insert(2)
     testList.insert(3)
-    testList.endInsert(8)
-    testList.insertInPosition(7, 2)
-    testList.show()
+    #testList.endInsert(8)
+    testList.insert(4)
+    testList.insert(5)
+    #testList.createcicle(2)
+    testList.cicleDetector()
+
+    #testList.insertInPosition(7, 2)
+    #testList.show()
 
 if __name__ == '__main__':
     main()
-
 
