@@ -1,0 +1,75 @@
+class Element:
+    def __init__(self, value):
+        self.value = value 
+        self.prox = None
+
+    def showNode(self):
+        return (self.value)
+
+class Stack:
+    def __init__(self):
+        self.size = 0
+        self.top = None
+
+    def insert(self, no):
+        node = Element(no)
+        if self.top is None:
+            self.top = node
+            self.size += 1
+        else:
+            node.prox = self.top
+            self.top = node
+            self.size += 1
+    def remove(self):
+        if self.top is None:
+            print("pilha vazia")
+        else:
+            self.top = self.top.prox
+
+    def show(self):
+        if self.top is not None:
+            temp = self.top
+            print('**LISTA**')
+            while temp is not None:
+                print(temp.showNode())
+                temp = temp.prox
+
+    def expValidator(self, expression):
+        parenth = "("
+        parenthOpp = ")"
+        bracket = "["
+        bracketOpp = "]"
+        braces = "{"
+        bracesOpp = "}"
+        #this function must be called after all the symbols of an expression are on the stack
+        tempSym = self.top
+        tempOpp = self.top
+        if (self.size % 2) != 0:
+            print("Expressão inválida")
+        if tempSym == parenth:
+            while tempOpp.prox is not None:
+                if tempSym.prox == parenthOpp:
+                    self.remove()
+                else:
+                    tempOpp = tempOpp.prox
+
+
+
+
+
+        
+        
+        
+
+def main():
+    List = Stack()
+    List.insert(1)
+    List.insert(2)
+    List.insert(3)
+    List.insert(4)
+    List.insert(5)
+    List.remove()
+    List.show()
+
+if __name__ == '__main__':
+    main()
