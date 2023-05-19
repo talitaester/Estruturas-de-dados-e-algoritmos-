@@ -72,6 +72,7 @@ class ListEnc:
 #
     def createcicle(self, pointerPos):
         temp = self.head
+        temp2 = self.head
         i = 0
         while True:
             if i == pointerPos:
@@ -87,12 +88,26 @@ class ListEnc:
     def cicleDetector(self):
         temp = self.head
         temp2 = self.head
-        while temp2.prox.prox is not None:
-            temp = temp.prox
-            temp2 = temp2.prox.prox
-            if temp == temp2:
-                print("Ciclo detectado")
+        while True:
+            if temp2.prox is None:
+                print("Não há ciclos aqui")
                 break
+            elif temp2.prox.prox is None:
+                print("Não há ciclos aqui")
+                break
+            else:
+                temp2 = temp2.prox.prox                   
+
+            if temp.prox is None:
+                print("Não há ciclos aqui")
+                break                
+            else:
+                temp = temp.prox
+            if temp == temp2:
+                print("ciclo detectado")
+                break
+
+        print("fim da análise")
 
 
 
@@ -105,7 +120,7 @@ def main():
     #testList.endInsert(8)
     testList.insert(4)
     testList.insert(5)
-    testList.createcicle(2)
+    testList.createcicle(3)
     testList.cicleDetector()
 
     #testList.insertInPosition(7, 2)
