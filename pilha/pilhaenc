@@ -25,6 +25,7 @@ class Stack:
             print("pilha vazia")
         else:
             self.top = self.top.prox
+    
 
     def show(self):
         if self.top is not None:
@@ -35,40 +36,28 @@ class Stack:
                 temp = temp.prox
 
     def expValidator(self, expression):
-        parenth = "("
-        parenthOpp = ")"
-        bracket = "["
-        bracketOpp = "]"
-        braces = "{"
-        bracesOpp = "}"
-        #this function must be called after all the symbols of an expression are on the stack
-        tempSym = self.top
-        tempOpp = self.top
-        if (self.size % 2) != 0:
-            print("Expressão inválida")
-        if tempSym == parenth:
-            while tempOpp.prox is not None:
-                if tempSym.prox == parenthOpp:
+    #args as a list w the symbols going this way -->
+        for i in expression:
+            if (i == "(") or (i == "[") or (i == "{"):
+                self.insert(i)  
+            else:
+                if (i == ")") and (self.top.value == "("):
                     self.remove()
-                else:
-                    tempOpp = tempOpp.prox
+                elif (i == "]") and (self.top.value == "["): 
+                    self.remove()
+                elif (i == "}") and (self.top.value == "{"): 
+                    self.remove()           
+        if self.top is None:
+            print("expressão válida")
+        else:
+            print("expressão inválida")
 
-
-
-
-
-        
-        
-        
+    
+   
 
 def main():
     List = Stack()
-    List.insert(1)
-    List.insert(2)
-    List.insert(3)
-    List.insert(4)
-    List.insert(5)
-    List.remove()
+    List.expValidator(["[", "]", "(", "}"])
     List.show()
 
 if __name__ == '__main__':
