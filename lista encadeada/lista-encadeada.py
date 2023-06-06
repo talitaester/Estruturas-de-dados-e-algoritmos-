@@ -70,20 +70,19 @@ class ListEnc:
     #    else:
     #        print("cicle detected")
 #
-    def createcicle(self, pointerPos):
+    def createcicle(self, value):
         temp = self.head
         temp2 = self.head
-        i = 0
         while True:
-            if i == pointerPos:
+            if temp.value == value:
                 temp2 = temp  
             if temp.prox is not None:
                 temp = temp.prox
             else:
                 temp.prox = temp2
                 break
-    #        i += 1
-    #        
+
+        
 
     def cicleDetector(self):
         temp = self.head
@@ -114,17 +113,19 @@ class ListEnc:
 
 def main():
     testList = ListEnc()
-    testList.insert(1)
-    testList.insert(2)
-    testList.insert(3)
-    #testList.endInsert(8)
-    testList.insert(4)
-    testList.insert(5)
-    testList.createcicle(3)
-    testList.cicleDetector()
+    size = int(input())
+    size -= 1
+    list = input().split()
+    for i in range(size):
+        if i < (size -1):
+            curr, prox =  input().split()
+            testList.insert(curr)
+        else:
+            curr, prox =  input().split()
+            testList.insert(curr)
+            testList.createcicle(prox)
 
-    #testList.insertInPosition(7, 2)
-    #testList.show()
+    testList.cicleDetector()
 
 if __name__ == '__main__':
     main()
