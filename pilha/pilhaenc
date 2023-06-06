@@ -6,6 +6,7 @@ class Element:
     def showNode(self):
         return (self.value)
 
+
 class Stack:
     def __init__(self):
         self.size = 0
@@ -36,29 +37,38 @@ class Stack:
                 temp = temp.prox
 
     def expValidator(self, expression):
-    #args as a list w the symbols going this way -->
+    #args as a string w the symbols going this way -->
+
         for i in expression:
             if (i == "(") or (i == "[") or (i == "{"):
                 self.insert(i)  
             else:
-                if (i == ")") and (self.top.value == "("):
-                    self.remove()
-                elif (i == "]") and (self.top.value == "["): 
-                    self.remove()
-                elif (i == "}") and (self.top.value == "{"): 
-                    self.remove()           
+                if self.top is not None:
+                    if (i == ")") and (self.top.value == "("):
+                        self.remove()
+                    elif (i == "]") and (self.top.value == "["): 
+                        self.remove()
+                    elif (i == "}") and (self.top.value == "{"): 
+                        self.remove()           
         if self.top is None:
-            print("expressão válida")
+            print("Valido")
         else:
-            print("expressão inválida")
+            print("Invalido")
 
     
    
 
 def main():
-    List = Stack()
-    List.expValidator(["[", "]", "(", "}"])
-    List.show()
+    stack = Stack()
+    exp = ""
+
+    for char in input():
+        if ((char == '(') or (char == ')') or (char == '[') or (char == ']')
+        or (char == '{') or (char == '}')):
+            exp = exp + char
+        else:
+            pass
+    stack.expValidator(exp)
 
 if __name__ == '__main__':
     main()
