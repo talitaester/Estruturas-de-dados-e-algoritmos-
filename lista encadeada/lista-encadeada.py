@@ -30,6 +30,17 @@ class ListEnc:
             self.head = node
             self.size += 1
 
+    def self_insert(self, no):
+        node = Element(no)
+        if self.head is None:
+            self.head = node
+            node.prox = node
+            self.size += 1
+        else:
+            node.prox = node
+            self.head = node
+            self.size += 1   
+
     def endInsert(self, no):
         node = Element(no)
         if self.head is not None:
@@ -117,15 +128,18 @@ def main():
     values = list.split()
     values = "".join(values)
     for i in range(size -1):
-        
         if i < (size -2):
             curr, prox =  input().split()
             testList.insert(curr)
         else :
             curr, prox =  input().split()
             testList.insert(curr)
-            if prox != values[size-1]:
-                testList.createcicle(prox)
+            if curr != prox:
+                if prox != values[size-1]:
+                    testList.createcicle(prox)
+            else:
+                testList.self_insert(prox)
+                
 
     testList.cicleDetector()
 
