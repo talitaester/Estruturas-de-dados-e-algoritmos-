@@ -89,24 +89,23 @@ class ListEnc:
         temp2 = self.head
         while True:
             if temp2.prox is None:
-                print("Não há ciclos aqui")
+                print("Sem Ciclo")
                 break
             elif temp2.prox.prox is None:
-                print("Não há ciclos aqui")
+                print("Sem Ciclo")
                 break
             else:
                 temp2 = temp2.prox.prox                   
 
             if temp.prox is None:
-                print("Não há ciclos aqui")
+                print("Sem Ciclo")
                 break                
             else:
                 temp = temp.prox
             if temp == temp2:
-                print("ciclo detectado")
+                print("Ciclo")
                 break
 
-        print("fim da análise")
 
 
 
@@ -114,16 +113,19 @@ class ListEnc:
 def main():
     testList = ListEnc()
     size = int(input())
-    size -= 1
-    list = input().split()
-    for i in range(size):
-        if i < (size -1):
+    list = input() #read input as as str 
+    values = list.split()
+    values = "".join(values)
+    for i in range(size -1):
+        
+        if i < (size -2):
             curr, prox =  input().split()
             testList.insert(curr)
-        else:
+        else :
             curr, prox =  input().split()
             testList.insert(curr)
-            testList.createcicle(prox)
+            if prox != values[size-1]:
+                testList.createcicle(prox)
 
     testList.cicleDetector()
 
