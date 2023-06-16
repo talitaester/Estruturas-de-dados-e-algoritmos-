@@ -63,23 +63,28 @@ class queue:
         if self.first is not None:
             temp = self.first
 
-            while maxUP >= 0:
+            while maxUP >= 0 and temp is not None:
+                print(temp.ID)
                 if (temp.value <= quantum) and (temp.value <= maxUP):
                     maxUP -= temp.value
                     temp.value = 0
+                    self.remove()
                 else:
+                    print(maxUP)
                     if maxUP >= quantum:
                         maxUP -= quantum
                         temp.value -= quantum
                     else:
                         temp.value -= maxUP
+                    
                         maxUP = 0
-
-                self.remove()
+                    self.remove()
+                
                 if temp.value > 0:
                     self.append2(temp)
 
                 temp =  temp.prox
+                print(temp.prox.value)
 
                 
 
@@ -89,12 +94,11 @@ def main():
     #reading data 
     lines = int(input())
     lines -= 1
-    maxUP, quantum = input().split()
+    quantum, maxUP = input().split()
     maxUP = int(maxUP)
     quantum = int(quantum)
     ids = input().split()
     values = input().split()
-
     for i in range(len(values)):
         Queue.append(values[i], ids[i])
     #finished reading data
