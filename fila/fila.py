@@ -19,13 +19,13 @@ class queue:
     def show(self):
         if self.first is not None:
             temp = self.first
-            print('**FILA**')
             while temp is not None:
-                print(temp.showNodeID())
+                print(temp.showNodeID(), end=' ')
                 temp = temp.prox
             temp = self.first
+            print()
             while temp is not None:
-                print(temp.showNodevalue())
+                print(temp.showNodevalue(), end=' ')
                 temp = temp.prox           
     
     def append(self, value, ID):
@@ -39,52 +39,44 @@ class queue:
                 temp = temp.prox
             temp.prox = no
 
+    
+ 
 
-
-    def append2(self, no):
-        #esse append apenas insere o elemento nó que ja foi previamente definido 
-        if self.first is not None:
-            temp = self.first
-        while temp.prox is not None:
-            temp = temp.prox
-        temp.prox = no
-
-        if self.first is None:
-            self.first = no
 
     def remove(self):
         if self.first is not None:
-            temp = self.first.prox
-            self.first.prox = None
-            self.first = temp
+            self.first = self.first.prox
         
     def sistemaOperacional(self, maxUP, quantum):
 
         if self.first is not None:
             temp = self.first
 
-            while maxUP >= 0 and temp is not None:
-                print(temp.ID)
+            while (maxUP > 0):
+
                 if (temp.value <= quantum) and (temp.value <= maxUP):
                     maxUP -= temp.value
                     temp.value = 0
-                    self.remove()
+
                 else:
-                    print(maxUP)
                     if maxUP >= quantum:
                         maxUP -= quantum
                         temp.value -= quantum
                     else:
-                        temp.value -= maxUP
-                    
+                        temp.value -= maxUP 
                         maxUP = 0
-                    self.remove()
+                self.remove()
                 
                 if temp.value > 0:
-                    self.append2(temp)
+                    self.append(temp.value, temp.ID)
 
-                temp =  temp.prox
-                print(temp.prox.value)
+                if temp.prox is not None:
+                    temp =  temp.prox
+                
+            
+
+
+            
 
                 
 
