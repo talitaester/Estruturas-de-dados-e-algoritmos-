@@ -91,8 +91,10 @@ def main():
     quantum = int(quantum)
     ids = input().split()
     values = input().split()
-    for i in range(len(values)):
-        Queue.append(values[i], ids[i])
+    j = 0
+    for i in values:
+        Queue.append(i, ids[j])
+        j+=1
     #finished reading data
     Queue.sistemaOperacional(maxUP, quantum)
     Queue.show()
