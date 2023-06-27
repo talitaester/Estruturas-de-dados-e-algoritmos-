@@ -27,15 +27,10 @@ class listES:
            self.size += 1
                  
     def showList(self, stop):
-      past = None
       for i in self.objList:
-        if past != i:
-            past = i
-            if i is not None:
-                print(i, end=' ')
+            print(i, end=' ')
             if i == stop:
                 break
-
 
     def delList(self):
        i = 0
@@ -90,22 +85,7 @@ class Tree:
         else:
             return self.search(no.left, value)
     
-    def min(self, no):
-    # função para acessar o valor mais a esquerda de uma sub árvore
-        temp = no
-        while temp.left is not None:
-            temp = temp.left
-        return temp
     
-    def children(self, no):
-    #função para saber a quantidade de filhos que um nó tem
-        if no.right is None and no.left is None:
-            children = 0
-        elif no.right is None or no.left is None:
-            children = 1
-        else:
-            children = 2
-        return children
     #casos para fazer a remoção:
     #o nó não tem filhos - apenas remove o nó
     #o nó tem um filho - troca o nó de lugar com o filho e remove o nó
@@ -124,7 +104,7 @@ class Tree:
         else:
 
             if parent is not None:
-                if self.children(pos) == 0:
+                if pos.left is None and pos.right is None:
                 #caso 1, onde o nó não tem filhos
                     if parent.right == pos:
                         parent.right = None
@@ -132,8 +112,8 @@ class Tree:
                     else:
                         parent.left = None
                         return None 
-                       
-                elif self.children(pos) == 1:
+                 #o nó tem alguns dos lados vazios, ou seja, tem apenas um filho      
+                elif pos.right is None or pos.left is None:
                     if pos.right is not None:
                         child = pos.right
                     else:
@@ -145,26 +125,27 @@ class Tree:
                         parent.left = child
                     return child   
                  
-                elif self.children(pos) == 2:
-                    smallBigNo = self.min(pos.right)
-                    # keeper = pos.value
+                elif pos.right is not None and pos.left is not None:
+                    smallBigNo = pos.right
+                    while smallBigNo.left is not None:
+                        smallBigNo = smallBigNo.left
                     pos.value = smallBigNo.value
-                    # smallBigNo.value = keeper
+                    #remover o duplicado começando por pos.right para evitar problemas
                     self.remove(pos.right, pos, pos.value)
-                    
-                    
-                    
-                    
 
+                    
+                    
+                    
 
 
             else:
                 
                 #isso acontece quando precisamos deletar a raiz
-                if self.children(pos) == 0:
+                #repetir os mesmos casos de quantidade de filhos
+                #prestar atenção nos argumentos das chamadas recurssivas
+                if pos.left is None and pos.right is None:
                     pos = None
-                elif self.children(pos) == 1:
-
+                elif pos.right is None or pos.left is None:
                     if pos.right is None:
                         self.root = pos.left
                         return pos.left
@@ -172,14 +153,14 @@ class Tree:
                         self.root = pos.right
                         return pos.right
 
-                elif self.children(pos) == 2:
-                    
-                    smallBigNo = self.min(pos.right)
-                    # keeper = pos.value
+                elif pos.right is not None and pos.left is not None:
+                    smallBigNo = pos.right
+                    while smallBigNo.left is not None:
+                        smallBigNo = smallBigNo.left                    
                     pos.value = smallBigNo.value
-                    # smallBigNo.value = keeper
         
-                    self.remove(pos.right, pos, value)
+                    self.remove(pos.right, pos, pos.value)
+
         
         return pos
 
